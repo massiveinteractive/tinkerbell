@@ -1,0 +1,5 @@
+<project name="tink" url="http://github.com/back2dos/tinkerbell" license="BSD">
+	<user name="back2dos"/>
+	<description></description>
+	<version name="2.0.0"></version>
+</project>
