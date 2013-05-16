@@ -37,7 +37,7 @@ class TypeTools {
 				case AccNormal, AccInline: 'default';
 				case AccNo: 'null';
 				case AccNever: 'never';
-				case AccCall(m): m;
+				case AccCall: 'property';
 				default:
 					throw 'not implemented';
 			}		
