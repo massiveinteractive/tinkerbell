@@ -1,5 +1,6 @@
-package tink.lang;
+package tink.lang.helpers;
 
+import tink.core.types.Signal;
 import tink.core.types.Future;
 import tink.core.types.Outcome;
 import tink.core.types.Callback;
@@ -40,18 +41,18 @@ abstract CollectorOp<T>(Future<T>) {
 		);
 	}
 	
-	@:from static function fromSurprise<D, F>(f:Surprise<D, F>):Unsafe<D, F> return cast f;
+	@:from static inline function fromSurprise<D, F>(f:Surprise<D, F>):Unsafe<D, F> return cast f;
 	
-	@:from static function fromFuture<A, B>(f:Future<A>):Unsafe<A, B> 
+	@:from static inline function fromFuture<A, B>(f:Future<A>):Unsafe<A, B> 
 		return f.map(function (v):Outcome<A, B> return Success(v));
 	
-	@:from static function fromOutcome<D, F>(f:Outcome<D, F>):Unsafe<D, F> return Future.ofConstant(f);	
+	@:from static inline function fromOutcome<D, F>(f:Outcome<D, F>):Unsafe<D, F> return Future.ofConstant(f);	
 	
 	//TODO: for some strange reason ints sometimes become floats here
-	@:from static public function fromAny<A, B>(v:A):Unsafe<A, B> return fromFuture(Future.ofConstant(v));
+	@:from static inline public function fromAny<A, B>(v:A):Unsafe<A, B> return fromFuture(Future.ofConstant(v));	
 	
-	static public function promote<X>(s:CollectorOp<X>):CollectorOp<X> return s;
-	static public function demote<X>(s:Result<X>):Result<X> return s;	
+	static public inline function promote<X>(s:CollectorOp<X>):CollectorOp<X> return s;
+	static public inline function demote<X>(s:Result<X>):Result<X> return s;	
 }
 
 private abstract Result<T>(Future<T>) {
