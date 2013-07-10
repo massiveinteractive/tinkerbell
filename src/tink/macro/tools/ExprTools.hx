@@ -1,5 +1,5 @@
 package tink.macro.tools;
-
+#if macro
 private typedef Inspect = Type;
 import haxe.macro.Context;
 import haxe.macro.Expr;
@@ -623,3 +623,4 @@ private class Matcher {
 		}
 	}
 }
+#end
